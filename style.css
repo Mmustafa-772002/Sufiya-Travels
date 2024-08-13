@@ -10,7 +10,7 @@ body {
 
 .hero {
     height: 100vh;
-    background: url("/images/image1.jpg") no-repeat center center/cover;
+    background: url("image1.jpg") no-repeat center center/cover;
     position: relative;
     display: flex;
     flex-direction: column;
