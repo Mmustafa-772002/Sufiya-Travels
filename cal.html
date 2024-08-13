@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="Calender.js">
+    <link rel="stylesheet" href="calender.css">
+    <title>Search Bar with Custom Date Picker</title>
+
+</head>
+
+<body>
+
+    <div class="search-bar">
+        <div class="input-group">
+            <i class="fas fa-bus"></i>
+            <input list="places" type="text" id="from" name="from" placeholder="From" required>
+            <datalist id="places">
+                <option value="Pune">
+                <option value="Ashtavinayak">
+                <option value="Ahmednagar">
+                <option value="Ajanta">
+                <option value="Ellora">
+            </datalist>
+        </div>
+
+        <div class="swap-button" onclick="swapPlaces()">
+            <i class="fas fa-exchange-alt"></i>
+        </div>
+
+        <div class="input-group">
+            <i class="fas fa-bus"></i>
+            <input list="places" type="text" id="to" name="to" placeholder="To" required>
+        </div>
+
+        <div class="custom-date-picker">
+            <i class="fas fa-calendar-alt"></i>
+            <input type="text" id="date" name="date" placeholder="dd-mm-yyyy" readonly onclick="toggleCalendar()">
+            <div class="calendar-wrapper" id="calendarWrapper">
+                <div class="calendar-header">
+                    <button id="prevMonth">&lt;</button>
+                    <span id="currentMonthYear"></span>
+                    <button id="nextMonth">&gt;</button>
+                </div>
+                <div class="calendar-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sun</th>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wed</th>
+                                <th>Thu</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
+                            </tr>
+                        </thead>
+                        <tbody id="calendarDays"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit">Search Buses</button>
+    </div>
+    <script>
+        const calendarWrapper = document.getElementById("calendarWrapper");
+        const dateInput = document.getElementById("date");
+        const calendarDays = document.getElementById("calendarDays");
+        const currentMonthYear = document.getElementById("currentMonthYear");
+
+        let date = new Date();
+        let currYear = date.getFullYear();
+        let currMonth = date.getMonth();
+
+        const renderCalendar = () => {
+            const firstDay = new Date(currYear, currMonth, 1).getDay();
+            const lastDate = new Date(currYear, currMonth + 1, 0).getDate();
+            const lastDay = new Date(currYear, currMonth, lastDate).getDay();
+            const lastDatePrevMonth = new Date(currYear, currMonth, 0).getDate();
+
+            let daysHtml = "";
+            let day = 1;
+            for (let i = 0; i < 6; i++) {
+                daysHtml += "<tr>";
+                for (let j = 0; j < 7; j++) {
+                    if (i === 0 && j < firstDay) {
+                        daysHtml += `<td class="inactive">${lastDatePrevMonth - firstDay + j + 1
+                            }</td>`;
+                    } else if (day > lastDate) {
+                        daysHtml += `<td class="inactive">${day - lastDate}</td>`;
+                        day++;
+                    } else {
+                        const isToday =
+                            day === date.getDate() &&
+                            currMonth === new Date().getMonth() &&
+                            currYear === new Date().getFullYear();
+                        daysHtml += `<td data-date="${day}" class="${isToday ? "selected" : ""
+                            }">${day}</td>`;
+                        day++;
+                    }
+                }
+                daysHtml += "</tr>";
+            }
+
+            calendarDays.innerHTML = daysHtml;
+            currentMonthYear.innerText = `${date.toLocaleString("default", {
+                month: "long",
+            })} ${currYear}`;
+        };
+
+        const toggleCalendar = () => {
+            calendarWrapper.style.display =
+                calendarWrapper.style.display === "none" ||
+                    calendarWrapper.style.display === ""
+                    ? "block"
+                    : "none";
+        };
+
+        document.getElementById("prevMonth").addEventListener("click", () => {
+            currMonth--;
+            if (currMonth < 0) {
+                currMonth = 11;
+                currYear--;
+            }
+            renderCalendar();
+        });
+
+        document.getElementById("nextMonth").addEventListener("click", () => {
+            currMonth++;
+            if (currMonth > 11) {
+                currMonth = 0;
+                currYear++;
+            }
+            renderCalendar();
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!document.querySelector(".custom-date-picker").contains(e.target)) {
+                calendarWrapper.style.display = "none";
+            }
+        });
+
+        calendarDays.addEventListener("click", (e) => {
+            if (e.target.dataset.date) {
+                dateInput.value = `${e.target.dataset.date}-${currMonth + 1}-${currYear}`;
+                calendarWrapper.style.display = "none";
+            }
+        });
+
+        renderCalendar();
+
+        function swapPlaces() {
+            var fromInput = document.getElementById("from");
+            var toInput = document.getElementById("to");
+            var temp = fromInput.value;
+            fromInput.value = toInput.value;
+            toInput.value = temp;
+        }
+
+    </script>
+
+</body>
+
+
+</html>

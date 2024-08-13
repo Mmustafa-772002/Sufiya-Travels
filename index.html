@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="style.css"> <!-- General Styles -->
+    <link rel="stylesheet" href="calendar.css">
+    <link rel="icon" type="image/x-icon" href="/logo/logo2.png">
+    <title>Sufiya Travels - Travel Booking</title>
+
+</head>
+
+<body>
+    <!-- Hero Section with Navigation -->
+    <div class="hero">
+        <div class="hero-overlay"></div>
+        <nav>
+            <div class="logo">
+                <img src="/logo/logo2.png" alt="Sufiya Travels Logo" class="logo-image">
+                Sufiya Travels
+            </div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Explore</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#" class="btn-primary"><i class="fas fa-ticket"></i>Book Now</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero-content">
+            <h1>Experience the World: Discover Unforgettable</h1>
+            <p>Welcome to our travel booking website, where you'll find a seamless experience to plan your next
+                adventure.</p>
+            <a href="#" class="btn-primary"><i class="fas fa-ticket"></i>Book Now</a>
+
+            <div class="cta-buttons">
+                <a href="#">Explore Destinations</a>
+                <a href="#">Plan Your Trip</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Bar with Calendar -->
+    <div class="search-bar">
+        <div class="input-group">
+            <i class="fas fa-bus"></i>
+            <input type="text" id="from" name="from" placeholder="From" oninput="filterCities('from')" required>
+            <div id="fromList" class="autocomplete-list"></div>
+        </div>
+
+        <div class="swap-button" onclick="swapPlaces()">
+            <i class="fas fa-exchange-alt"></i>
+        </div>
+
+        <div class="input-group">
+            <i class="fas fa-bus"></i>
+            <input type="text" id="to" name="to" placeholder="To" oninput="filterCities('to')" required>
+            <div id="toList" class="autocomplete-list"></div>
+        </div>
+
+        <div class="input-group">
+            <i class="fas fa-calendar-alt"></i>
+            <input type="text" id="date" name="date" placeholder="dd-mm-yyyy" onclick="toggleCalendar()" readonly>
+        </div>
+
+        <button type="submit">Search Buses</button>
+    </div>
+
+    <div class="calendar" id="calendarWrapper">
+        <header>
+            <span class="prev" id="prevMonth">&#10094;</span>
+            <span id="monthYearDisplay" onclick="toggleMonthYearList()"></span>
+            <span class="next" id="nextMonth">&#10095;</span>
+        </header>
+        <div class="month-list" id="monthList"></div>
+        <div class="year-list" id="yearList"></div>
+        <div class="days">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+        </div>
+        <div class="days" id="calendarDays"></div>
+    </div>
+
+    <!-- Section: Why Choose Us -->
+    <div class="section">
+        <h2>Why Choose Us?</h2>
+        <p>At Sufiya Travels, we provide personalized travel experiences tailored to your preferences. Our team of
+            experts ensures that every journey is memorable and enjoyable.</p>
+        <a href="#" class="btn-primary">Learn More</a>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="testimonials">
+        <div class="section">
+            <h2>What Our Customers Say</h2>
+            <blockquote>
+                "Sufiya Travels made our honeymoon unforgettable. From the detailed itinerary to the exceptional
+                customer service, every detail was taken care of. Highly recommend!"
+                <footer>- Emily & John</footer>
+            </blockquote>
+            <blockquote>
+                "Booking our family vacation through Sufiya Travels was a breeze. The support we received was top-notch,
+                and the destinations were exactly as described."
+                <footer>- The Smith Family</footer>
+            </blockquote>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Sufiya Travels. All rights reserved.</p>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <p>Follow us on <a href="#"><i class="fab fa-facebook-f"></i></a> <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </p>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="calendar.js"></script>
+</body>
+
+</html>
