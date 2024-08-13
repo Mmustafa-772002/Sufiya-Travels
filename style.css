@@ -22,23 +22,23 @@ body {
 
 @keyframes slide-background {
     0% {
-        background: url('/images/image1.jpg') no-repeat center center/cover;
+        background: url('./images/image1.jpg') no-repeat center center/cover;
     }
 
     25% {
-        background: url('/images/image2.jpg') no-repeat center center/cover;
+        background: url('./images/image2.jpg') no-repeat center center/cover;
     }
 
     50% {
-        background: url('/images/image3.jpg') no-repeat center center/cover;
+        background: url('./images/image3.jpg') no-repeat center center/cover;
     }
 
     75% {
-        background: url('/images/image4.jpg') no-repeat center center/cover;
+        background: url('./images/image4.jpg') no-repeat center center/cover;
     }
 
     100% {
-        background: url('/images/image1.jpg') no-repeat center center/cover;
+        background: url('./images/image1.jpg') no-repeat center center/cover;
     }
 }
 
